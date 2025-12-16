@@ -1,101 +1,112 @@
 
-<!-- Local skip link for keyboard users (in-page only) -->
-<aain-contentSkip to main content</a>
+<h2 class="pageTitle">Tech Prep Showcase</h2>
 
-<!-- Minimal styles scoped to your content area -->
+<!-- Skip link for keyboard users (in-page only) -->
+#tp-main-contentSkip to main content</a>
+
 <style>
-  /* Respect users who prefer reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    * { scroll-behavior: auto !important; }
-  }
+  /* Scope styles to this article only by prefixing with tp- classes */
 
-  /* Skip link: appears on focus for keyboard users */
+  /* Skip link: appears when focused */
   .tp-skip {
     position: absolute;
     left: -9999px;
     top: -9999px;
   }
   .tp-skip:focus {
-    left: 8px;
-    top: 8px;
-    z-index: 1000;
-    background: #000;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
+    left: 8px; top: 8px; z-index: 1000;
+    background: #000; color: #fff;
+    padding: 8px 12px; border-radius: 6px;
     text-decoration: none;
-    outline: 2px solid #fff;
-    outline-offset: 2px;
+    outline: 2px solid #fff; outline-offset: 2px;
   }
 
-  /* Card layout for new sections */
+  /* Container & typography */
+  #tp-main-content {
+    max-width: 1000px;
+    line-height: 1.6;
+  }
+  #tp-main-content h2 {
+    color: #452b76; /* matches current site accent */
+    margin: 0 0 10px 0;
+  }
+  #tp-main-content p { margin: 0 0 12px 0; }
+
+  /* Card sections */
   .tp-card {
-    background: #ffffff;
+    background: #fff;
     padding: 18px 20px;
     margin: 16px 0 22px 0;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   }
-  .tp-card h2 {
-    margin: 0 0 10px 0;
-    color: #4B0082;           /* high-contrast accent */
-    font-size: 1.35em;
+  .tp-card h3 {
+    margin: 0 0 8px 0;
+    color: #452b76;
+    font-size: 1.25em;
     font-weight: 700;
   }
   .tp-card ul {
     margin: 0;
-    padding-left: 20px;       /* keep default bullets */
-    line-height: 1.6;
-    font-size: 1.05em;
+    padding-left: 20px; /* native bullets */
   }
 
   /* Links & focus visibility */
-  .tp-card a {
-    color: #4B0082;
+  .tp-card a,
+  .tp-links a {
+    color: #452b76;
     font-weight: 700;
-    text-decoration: underline; /* underline for better readability */
+    text-decoration: underline; /* better readability than color alone */
   }
-  .tp-card a:focus, .tp-card a:hover {
-    outline: 3px solid #4B0082;
+  .tp-card a:focus, .tp-card a:hover,
+  .tp-links a:focus, .tp-links a:hover {
+    outline: 3px solid #452b76;
     outline-offset: 2px;
   }
 
-  /* Utility: subtle divider */
-  .tp-divider {
-    border: 0;
-    height: 1px;
-    background: #ddd;
-    margin: 24px 0;
-  }
-
-  /* Make the hero/logo responsive and accessible */
+  /* Responsive image */
   .tp-hero {
     max-width: 100%;
     height: auto;
   }
+
+  /* Divider */
+  .tp-divider {
+    border: 0; height: 1px; background: #ddd; margin: 24px 0;
+  }
+
+  /* Past Results accordion (native, accessible) */
+  details.tp-year { margin: 10px 0; }
+  details.tp-year summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: #222;
+  }
+  details.tp-year[open] summary { color: #452b76; }
+
+  /* Mobile tweaks */
+  @media (max-width: 600px) {
+    .tp-card { padding: 16px; }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto !important; }
+  }
 </style>
 
-<!-- Main content starts -->
-<div id="main-content">
+<div id="tp-main-content">
 
-  <h1 class="sr-only">Tech Prep Showcase 2026</h1> <!-- Hidden heading for SRs if the page h1 is outside your editable area -->
-
-  <h2>Save the Date</h2>
-  <p>
-    <strong>Tech Prep Showcase 2026</strong> will be held on <strong>Thursday, April 9, 2026</strong>
-    in the <strong>Sinclair Conference Center, Building 12</strong>.
-  </p>
-
-  <!-- Accessible logo/hero: use descriptive alt text -->
-  <p>
-    <img
-      class="tp-hero"
-      src="/mvtechprep/assets/Image/Tech%20Prep%20Showcase%20Logo.png"
-      alt="Miami Valley Tech Prep Showcase logo"
-      width="532"
-      height="149"
-   ">
-    <h2 id="important-dates">Important Dates</h2>
+  <!-- Top announcement -->
+  <section aria-labelledby="tp-save-the-date">
+    <h2 id="tp-save-the-date">Save the Date</h2>
+    <p><strong>Tech Prep Showcase 2026</strong> will be held on <strong>Thursday, April 9, 2026</strong> in the <strong>Sinclair Conference Center, Building 12</strong>.</p>
+    <p>
+      <img class="tp-hero"
+           src="/mvtechprep/assets/Image/Tech%20Prep%20Showcase%20Logo.png"
+           alt="Tech Prep Showcase logo"
+           width="532""tp-card" aria-labelledby="tp-dates">
+    <h3 id="tp-dates">Important Dates</h3>
     <ul>
       <li><strong>Registration Opens:</strong> January 13, 2026</li>
       <li><strong>Registration Closes:</strong> March 5, 2026</li>
@@ -104,29 +115,32 @@
   </section>
 
   <!-- NEW: Resources for Teams -->
-  <section class="tp-card" aria-labelledby="resources-teams">
-    <h2 id="resources-teams">Resources for Teams</h2>
-    <ul>
+  <section class="tp-card" aria-labelledby="tp-resources">
+    <h3 id="tp-resources">Resources for Teams</h3>
+    <ul class="tp-links">
       <li>
-        <a href="/mvtechprep/assets/File/TPShowcase/techprepShowcase_2026/2026-non-medical-bioscience-rubric.pdf" 2026 Non‑Medical Bioscience Rubric (PDF, opens in new tab)
+        <a href="/mvtechprep/assets/File/TPShowcase/techprepShowcase_2026/2026-non-medical-bioscience-rubric.pdf"
+          Medical Bioscience Rubric (PDF, opens in new tab)
         </a>
       </li>
       <li>
-        <a href="/mvtechprep/assets/File/TPShowcase/techprepShowcase_2026/2026-medical-biosbric.pdf
-          2026 Medical Bioscience Rubric (PDF, opens in new tab)
+        <a href="/mvtechprep/assets/File/TPShowcase/techprepShowcase_2026/2026-medical-bioscience-r
+           2026 Medical Bioscience Rubric (PDF, opens in new tab)
         </a>
       </li>
       <li>
-        <a href="/mvtechprep/assets/File/TPShowcase/techprepShowcase_2026/2026-medical-bioscience-paper-rubric.pdf" targetedical Bioscience Paper Rubric (PDF, opens in new tab)
+        <a href="/mvtechprep/assets/File/TPShowcase/techprepShowcase_2026/2026-medical-bioscience-paper-rubric.pdf"
+          cal Bioscience Paper Rubric (PDF, opens in new tab)
         </a>
       </li>
       <li>
-        <a href="/mvtechprep/assets/File/TPShowcase/techprepShowcase_2026/examples-of-questions.pdf" Examples of Questions Asked by Judges (PDF, opens in new tab)
+        <a href="/mvtechprep/assets/File/TPShowcaseShowcase_2026/examples-of-questions.pdf
+           Examples of Questions Asked by Judges (PDF, opens in new tab)
         </a>
       </li>
       <li>
-        <a href="/mvtechprep/assets/File/TPShowcase/techprepShowcase_2026/202tive-categories.pdf
-          2026 Competitive Categories (PDF, opens in new tab)
+        <a href="/mvtechprep/assets/File/TPShowcase/techprepShowcase_2026/2026-competitive-categories.pdf"
+ 2026 Competitive Categories (PDF, opens in new tab)
         </a>
       </li>
     </ul>
@@ -134,96 +148,80 @@
 
   <hr class="tp-divider" />
 
-  <h2>Description</h2>
-  <p>
-    Miami Valley Tech Prep Consortium students have an opportunity to compete in the Sinclair Tech Prep
-    Showcase. Students develop contextual learning projects based on the skills and knowledge they have gained
-    in their Career Tech classes. Teams are composed of <strong>2–5 students</strong>, and presentations should be
-    <strong>5–7 minutes</strong>. Students are judged according to a rubric using the following criteria:
-  </p>
+  <!-- Description (polished & accessible) -->
+  <section aria-labelledby="tp-desc">
+    <h2 id="tp-desc">Description</h2>
+    <p>Miami Valley Tech Prep Consortium students have an opportunity to compete in the Sinclair Tech Prep Showcase. Students develop contextual learning projects based on the skills and knowledge they have gained in their Career Tech classes. Teams are composed of <strong>2–5 students</strong>, and presentations should be <strong>5–7 minutes</strong>. Students are judged according to a rubric using the following criteria:</p>
+    <ul>
+      <li>Project research and development</li>
+      <li>Authentic work-based learning</li>
+      <li>Academic/technical skills</li>
+      <li>Professional relationships</li>
+      <li>Presentation skills</li>
+    </ul>
+    <p>The Showcase features projects from 15 Ohio career pathways: Agricultural &amp; Environmental Systems, Arts &amp; Communication, Business &amp; Administrative Services, Construction Technologies, Education &amp; Training, Engineering &amp; Science Technologies, Finance, Health Science, Hospitality &amp; Tourism, Human Services, Information Technology, Law &amp; Public Safety, Manufacturing Technologies, Marketing, and Transportation Systems.</p>
+    <p>The Showcase provides students with the opportunity to network with other Career Tech students in the area and to interact with judges from education, business, industry, and labor.</p>
+  </section>
 
-  <ul>
-    <li>Project research and development</li>
-    <li>Authentic work-based learning</li>
-    <li>Academic/technical skills</li>
-    <li>Professional relationships</li>
-    <li>Presentation skills</li>
-  </ul>
+  <hr class="tp-divider" />
 
-  <p>
-    The Showcase features projects from 15 Ohio career pathways: Agricultural &amp; Environmental Systems, Arts &amp;
-    Communication, Business &amp; Administrative Services, Construction Technologies, Education &amp; Training,
-    Engineering &amp; Science Technologies, Finance, Health Science, Hospitality &amp; Tourism, Human Services,
-    Information Technology, Law &amp; Public Safety, Manufacturing Technologies, Marketing, and Transportation Systems.
-  </p>
-  <p>
-    The Showcase provides students with the opportunity to network with other Career Tech students in the area and
-    to interact with judges from education, business, industry, and labor.
-  </p>
+  <!-- Past Results: use <details> for cleaner UX and accessibility -->
+  <section aria-labelledby="tp-past">
+    <h2 id="tp-past">Past Results</h2>
 
-  <h2>Past Results</h2>
+    <details class="tp-year">
+      <summary>2025</summary>
+      <p>
+        /mvtechprep/assets/File/TPShowcase/techPrepShowcase_2025/showcase_2025_results_v1.pdfView the 2025 results (PDF, opens in new tab)</a>
+      </p>
+      <ul class="tp-links">
+        <li>
+          <a href="https://www.flickros/sinclaircommunitycollege/albums/72177720325494100Tech Prep Showcase 2025 photos (opens in new tab)</a>
+        </li>
+        <li>
+          <a href="/mvtechprep/assets/File/TPShowcase/techPrepShowcase_2025/showcase%20judging%20rubric%2020252025 Judging Rubric (PDF, opens in new tab)</a>
+        </li>
+      </ul>
+    </details>
 
-  <p>
-    <strong>Tech Prep Showcase 2025 Results:</strong>
-    <a href="/mvtechprep/assets/File/TPShowcase/techPrepShowcase_2025/showcase_2025_results_v1.pdf" target="_blank" relPDF, opens in new tab)
-    </a>
-  </p>
-  <ul>
-    <li>
-      https://www.flickr.com/photos/sinclaircommunitycollege/albums/72177720325494100
-        Tech Prep Showcase 2025 photos (opens in new tab)
-      </a>
-    </li>
-    <li>
-      <a href="/mvtechprep/assets/File/TPShowcase/techPrepShowcase_2025/showcase%20judging%20rubric%202pdf
-        2025 Judging Rubric (PDF, opens in new tab)
-      </a>
-    </li>
-  </ul>
+    <details class="tp-year">
+      <summary>2024</summary>
+      <p>
+        <a href="/mvtechprep/assets/File/TPShowcase/techPrepShowcase_2024/Tech%20Prep%20Showcase%202024%0Form%20(Responses)_v2.pdfView the 2024 results (PDF, opens in new tab)</a>
+      </p>
+      <ul class="tp-links">
+        <li>
+          <a href="https://www.flickr.com/photos/sinclaircommunitycollege/albums/72177720316316209/"
+             target="_pens in new tab)</a>
+        </li>
+        <li>
+          <a href="/mvtechprep/assets/File/TPShowcase/techPrepShowcase_2024/showcase_judging_rubric_non_medical_bios24_v0_01%20(1).pdf2024 Judging Rubric (PDF, opens in new tab)</a>
+        </li>
+      </ul>
+    </details>
 
-  <p>
-    <strong>Tech Prep Showcase 2024 Results:</strong>
-    <mvtechprep/assets/File/TPShowcase/techPrepShowcase_2024/Tech%20Prep%20Showcase%202024%20Tally%20Form%20(Responses)_v2.pdf
-      View the 2024 results (PDF, opens in new tab)
-    </a>
-  </p>
-  <ul>
-    <li>
-      https://www.flickr.com/photos/sinclaircommunitycollege/albums/72177720316316209/
-        Tech Prep Showcase 2024 photos (opens in new tab)
-      </a>
-    </li>
-    <li>
-      /mvtechprep/assets/File/TPShowcase/techPrepShowcase_2024/showcase_judging_rubric_non_medical_bioscience_2024_v0_01%20(1).pdf
-        2024 Judging Rubric (PDF, opens in new tab)
-      </a>
-    </li>
-  </ul>
+    <details class="tp-year">
+      <summary>2023</summary>
+      <p>
+        <a href="/mvtechprep/assets/File/TPShowcase/techPrepShowcase_2023/Tech_Prep_Showcase_2023_1.pdfView the 2023 results (PDF, opens in new tab)</a>
+      </p>
+      <ul class="tp-links">
+        <li>
+          <a href="https://www.flickr.com/photos/sinclaircommunitycollege/albums/72177720306761826"
+             target="_blank"n new tab)</a>
+        </li>
+      </ul>
+    </details>
 
-  <p>
-    <strong>Tech Prep Showcase 2023 Results:</strong>
-    <a href="/mvtechprep/assets/File/TPShowcase/techPrepShowcaseh_Prep_Showcase_2023_Results_v1.pdf
-      View the 2023 results (PDF, opens in new tab)
-    </a>
-  </p>
-  <ul>
-    <li>
-      https://www.flickr.com/photos/sinclaircommunitycollege/albums/72177720306761826
-        Tech Prep Showcase 2023 photos (opens in new tab)
-      </a>
-    </li>
-  </ul>
-
-  <p>
-    <strong>Tech Prep Showcase 2022 Results:</strong>
-    /mvtechprep/assets/File/Events/Showcase%202022/Tech%20Prep%20Showcase%202022%20Champions.pdf
-      View the 2022 champions (PDF, opens in new tab)
-    </a>
-  </p>
-  <ul>
-    <li>
-      https://www.flickr.com/photos/sinclaircommunitycollege/albums/72177720298382880
-        Tech Prep Showcase 2022 photos (opens in new tab)
-      </a>
-       </li>
-  </ul>
+    <details class="tp-year">
+      <summary>2022</summary>
+      <p>
+        /mvtechprep/assets/File/Events/Showcase%202022/Tech%20Prep%20Showcase%202022%20Champions.pdfView the 2022 champions (PDF, opens in new tab)</a>
+      </p>
+      <ul class="tp-links">
+        <li>
+          <a href="https://www.flickr.com/photos/sinclaircommunitycollege/albums/721777202ech Prep Showcase 2022 photos (opens in new tab)</a>
+        </li        </li>
+      </ul>
+    </details>
+  </section>
